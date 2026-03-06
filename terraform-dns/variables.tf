@@ -9,6 +9,9 @@ variable "proxmox_api_token_id" {
 variable "proxmox_api_token" {
   type = string
 }
-
+variable "node_name" {
+  type = string
+  default = "proxmox"
+}
 variable "ssh_public_key" {}
 variable "root_password" {}

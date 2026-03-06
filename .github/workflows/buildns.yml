@@ -1,8 +1,7 @@
-name: Terraform-Proxmox
+name: Terraform-Proxmox-LXC
 
 on:
- workflow_dispatch:
- 
+  workflow_dispatch:
 
 jobs:
   terraform:
@@ -13,7 +12,7 @@ jobs:
         working-directory: terraform-dns
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Terraform Init
@@ -23,11 +22,18 @@ jobs:
         run: terraform plan
         env:
           TF_VAR_proxmox_api_url: ${{ secrets.PROXMOX_API_URL }}
+          TF_VAR_proxmox_api_token_id: ${{ secrets.PROXMOX_API_TOKEN_ID }}
           TF_VAR_proxmox_api_token: ${{ secrets.PROXMOX_API_TOKEN }}
-         
+          TF_VAR_node_name: ${{ secrets.NODE_NAME }}
+          TF_VAR_ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
+          TF_VAR_root_password: ${{ secrets.ROOT_PASSWORD }}
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
         env:
           TF_VAR_proxmox_api_url: ${{ secrets.PROXMOX_API_URL }}
+          TF_VAR_proxmox_api_token_id: ${{ secrets.PROXMOX_API_TOKEN_ID }}
           TF_VAR_proxmox_api_token: ${{ secrets.PROXMOX_API_TOKEN }}
+          TF_VAR_node_name: ${{ secrets.NODE_NAME }}
+          TF_VAR_ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
+          TF_VAR_root_password: ${{ secrets.ROOT_PASSWORD }}
