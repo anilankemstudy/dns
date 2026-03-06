@@ -23,7 +23,7 @@ jobs:
         env:
           TF_VAR_proxmox_api_url: ${{ secrets.PROXMOX_API_URL }}
           TF_VAR_proxmox_api_token_id: ${{ secrets.PROXMOX_API_TOKEN_ID }}
-          TF_VAR_proxmox_api_token: ${{ secrets.PROXMOX_API_TOKEN }}
+          TF_VAR_proxmox_api_secret: ${{ secrets.PROXMOX_API_SECRET }}
           TF_VAR_node_name: ${{ secrets.NODE_NAME }}
           TF_VAR_ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
           TF_VAR_root_password: ${{ secrets.ROOT_PASSWORD }}
@@ -33,7 +33,7 @@ jobs:
         env:
           TF_VAR_proxmox_api_url: ${{ secrets.PROXMOX_API_URL }}
           TF_VAR_proxmox_api_token_id: ${{ secrets.PROXMOX_API_TOKEN_ID }}
-          TF_VAR_proxmox_api_token: ${{ secrets.PROXMOX_API_TOKEN }}
+          TF_VAR_proxmox_api_secret: ${{ secrets.PROXMOX_API_SECRET }}
           TF_VAR_node_name: ${{ secrets.NODE_NAME }}
           TF_VAR_ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
           TF_VAR_root_password: ${{ secrets.ROOT_PASSWORD }}

@@ -6,7 +6,7 @@ variable "proxmox_api_token_id" {
   type = string
 }
 
-variable "proxmox_api_token" {
+variable "proxmox_api_secret" {
   type = string
 }
 variable "node_name" {
