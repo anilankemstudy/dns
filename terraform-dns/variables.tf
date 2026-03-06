@@ -2,9 +2,19 @@ variable "proxmox_api_url" {
   type = string
 }
 
-variable "proxmox_api_token_id" {
+variable "proxmox_auth_method" {
   type    = string
-  default = null
+  default = "password"
+
+  validation {
+    condition     = contains(["password", "token"], var.proxmox_auth_method)
+    error_message = "proxmox_auth_method must be \"password\" or \"token\"."
+  }
+}
+
+variable "proxmox_api_token_id" {
+  type      = string
+  default   = null
   sensitive = true
 }
 
