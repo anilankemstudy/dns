@@ -1,6 +1,6 @@
 resource "proxmox_lxc" "ubuntu_lxc" {
-  node_name = var.node_name
-  vm_id     = 8001
+  target_node = var.node_name
+  vmid        = 8001
   hostname  = "dns-server"
 
   ostemplate = "local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
@@ -21,8 +21,8 @@ resource "proxmox_lxc" "ubuntu_lxc" {
     gw     = "192.168.1.1"
   }
 
-  ssh_keys = [var.ssh_public_key]   # Inject SSH key
-  password = var.root_password      # Root password
+  ssh_public_keys = var.ssh_public_key
+  password        = var.root_password
   lock     = false
   start    = true
 }
