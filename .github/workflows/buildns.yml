@@ -22,7 +22,6 @@ jobs:
         run: terraform plan
         env:
           TF_VAR_proxmox_api_url: ${{ secrets.PROXMOX_API_URL }}
-          TF_VAR_proxmox_auth_method: password
           TF_VAR_proxmox_user: ${{ secrets.PROXMOX_USER }}
           TF_VAR_proxmox_password: ${{ secrets.PROXMOX_PASSWORD }}
           TF_VAR_node_name: ${{ secrets.NODE_NAME }}
@@ -33,7 +32,6 @@ jobs:
         run: terraform apply -auto-approve
         env:
           TF_VAR_proxmox_api_url: ${{ secrets.PROXMOX_API_URL }}
-          TF_VAR_proxmox_auth_method: password
           TF_VAR_proxmox_user: ${{ secrets.PROXMOX_USER }}
           TF_VAR_proxmox_password: ${{ secrets.PROXMOX_PASSWORD }}
           TF_VAR_node_name: ${{ secrets.NODE_NAME }}
