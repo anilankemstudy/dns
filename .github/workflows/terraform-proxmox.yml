@@ -1,0 +1,41 @@
+name: Terraform Proxmox LXC
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    env:
+      TF_VAR_proxmox_api_url: ${{ secrets.PROXMOX_API_URL }}
+      TF_VAR_proxmox_user: ${{ secrets.PROXMOX_USER }}
+      TF_VAR_proxmox_password: ${{ secrets.PROXMOX_PASSWORD }}
+      TF_VAR_root_password: ${{ secrets.LXC_ROOT_PASSWORD }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.6
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Format
+        run: terraform fmt -check
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+
+      - name: Terraform Apply (main branch only)
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve tfplan
