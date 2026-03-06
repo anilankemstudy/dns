@@ -11,3 +11,7 @@ variable "node_name" {
   type = string
   default = "proxmox"
 }
+
+
+variable "ssh_public_key" {}
+variable "root_password" {}
