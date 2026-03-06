@@ -3,11 +3,26 @@ variable "proxmox_api_url" {
 }
 
 variable "proxmox_api_token_id" {
-  type = string
+  type    = string
+  default = null
+  sensitive = true
 }
 
 variable "proxmox_api_token_secret" {
-  type = string
+  type      = string
+  default   = null
+  sensitive = true
+}
+
+variable "proxmox_user" {
+  type    = string
+  default = null
+}
+
+variable "proxmox_password" {
+  type      = string
+  default   = null
+  sensitive = true
 }
 variable "node_name" {
   type = string
